@@ -12,6 +12,7 @@ class MainActivity : AppCompatActivity() {
 
         button.setOnClickListener {
             delayOne()
+            delayTwo()
         }
 
     }
@@ -25,5 +26,15 @@ class MainActivity : AppCompatActivity() {
                 EspressoIdlingResource.decrement()
             }
         }, 2000)
+    }
+
+    private fun delayTwo() {
+        EspressoIdlingResource.increment()
+        Handler().postDelayed({
+            text_view.text = getString(R.string.delay2)
+            if (!EspressoIdlingResource.getEspressoIdlingResource().isIdleNow) {
+                EspressoIdlingResource.decrement()
+            }
+        }, 3000)
     }
 }

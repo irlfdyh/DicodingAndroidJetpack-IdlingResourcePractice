@@ -29,7 +29,7 @@ class MainActivityTest {
     fun checkText() {
         onView(withId(R.id.text_view)).check(matches(withText(activityRule.activity.getString(R.string.prepare))))
         onView(withText(activityRule.activity.getString(R.string.start))).perform(click())
-        onView(withId(R.id.text_view)).check(matches(withText(activityRule.activity.getString(R.string.delay1))))
+        onView(withId(R.id.text_view)).check(matches(withText(activityRule.activity.getString(R.string.delay2))))
     }
 
     @After

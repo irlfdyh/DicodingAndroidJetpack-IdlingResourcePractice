@@ -17,8 +17,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun delayOne() {
+        EspressoIdlingResource.increment()
         Handler().postDelayed({
             text_view.text = getString(R.string.delay1)
+            if (!EspressoIdlingResource.getEspressoIdlingResource().isIdleNow) {
+                // Tell the espresso that the job is finished
+                EspressoIdlingResource.decrement()
+            }
         }, 2000)
     }
 }

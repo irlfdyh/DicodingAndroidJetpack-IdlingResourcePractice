@@ -3,6 +3,7 @@ package com.dicoding.practice.myidlingresource
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -19,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun delayOne() {
         EspressoIdlingResource.increment()
-        Handler().postDelayed({
+        Handler(Looper.getMainLooper()).postDelayed({
             text_view.text = getString(R.string.delay1)
             if (!EspressoIdlingResource.getEspressoIdlingResource().isIdleNow) {
                 // Tell the espresso that the job is finished
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun delayTwo() {
         EspressoIdlingResource.increment()
-        Handler().postDelayed({
+        Handler(Looper.getMainLooper()).postDelayed({
             text_view.text = getString(R.string.delay2)
             if (!EspressoIdlingResource.getEspressoIdlingResource().isIdleNow) {
                 EspressoIdlingResource.decrement()
